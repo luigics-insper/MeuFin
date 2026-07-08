@@ -1,0 +1,12 @@
+# Python
+venv/
+__pycache__/
+*.db
+
+# Node (pro frontend depois)
+node_modules/
+dist/
+
+# Editor/OS
+.vscode/
+.DS_Store
