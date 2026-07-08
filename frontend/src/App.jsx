@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { getCategorias, getTransacoes, deletarTransacao } from './api'
 import ListaTransacoes from './components/ListaTransacoes'
+import FormTransacao from './components/FormTransacao'
 
 function mesAtual() {
   return new Date().toISOString().slice(0, 7) // "2026-07"
@@ -10,6 +11,7 @@ export default function App() {
   const [mes, setMes] = useState(mesAtual())
   const [categorias, setCategorias] = useState([])
   const [transacoes, setTransacoes] = useState([])
+  const [formAberto, setFormAberto] = useState(false)
 
   useEffect(() => {
     getCategorias().then(setCategorias)
@@ -46,6 +48,20 @@ export default function App() {
           onDeletar={handleDeletar}
         />
       </div>
+      <button
+        onClick={() => setFormAberto(true)}
+        className="fixed bottom-6 right-6 w-14 h-14 bg-indigo-600 hover:bg-indigo-500 rounded-full shadow-lg shadow-indigo-600/30 flex items-center justify-center"
+      >
+        <span className="text-2xl font-bold leading-none pb-0.5">+</span>
+      </button>
+
+      {formAberto && (
+        <FormTransacao
+          categorias={categorias}
+          onCriada={carregar}
+          onFechar={() => setFormAberto(false)}
+        />
+      )}
     </div>
   )
 }

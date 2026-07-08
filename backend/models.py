@@ -16,3 +16,10 @@ class Transacao(SQLModel, table=True):
     descricao: Optional[str] = None
     data: date = Field(default_factory=date.today, index=True)
     categoria_id: int = Field(foreign_key="categoria.id")
+
+class TransacaoCreate(SQLModel):
+    valor: float
+    tipo: str = "gasto"
+    descricao: Optional[str] = None
+    data: Optional[date] = None
+    categoria_id: int

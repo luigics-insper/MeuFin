@@ -3,7 +3,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlmodel import Session, select
 from database import get_session
-from models import Transacao
+from models import Transacao, TransacaoCreate
 
 router = APIRouter(prefix="/transacoes", tags=["transacoes"])
 
@@ -29,9 +29,16 @@ def listar(
 
 
 @router.post("/", status_code=201)
-def criar(transacao: Transacao, session: Session = Depends(get_session)):
-    if transacao.tipo not in ("gasto", "receita"):
+def criar(dados: TransacaoCreate, session: Session = Depends(get_session)):
+    if dados.tipo not in ("gasto", "receita"):
         raise HTTPException(422, "tipo deve ser 'gasto' ou 'receita'")
+    transacao = Transacao(
+        valor=dados.valor,
+        tipo=dados.tipo,
+        descricao=dados.descricao,
+        data=dados.data or date.today(),
+        categoria_id=dados.categoria_id,
+    )
     session.add(transacao)
     session.commit()
     session.refresh(transacao)
