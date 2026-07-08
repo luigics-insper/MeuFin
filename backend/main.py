@@ -1,0 +1,34 @@
+from fastapi import FastAPI
+from sqlmodel import Session, select
+from database import create_db, engine
+from models import Categoria
+from routers import categorias
+
+app = FastAPI(title="Finanças API")
+app.include_router(categorias.router)
+
+PADRAO = [
+    ("Alimentação", "#ef4444"),
+    ("Transporte", "#3b82f6"),
+    ("Lazer", "#a855f7"),
+    ("Moradia", "#f59e0b"),
+    ("Saúde", "#10b981"),
+    ("Educação", "#06b6d4"),
+    ("Salário", "#22c55e"),
+    ("Outros", "#6b7280"),
+]
+
+
+@app.on_event("startup")
+def startup():
+    create_db()
+    with Session(engine) as session:
+        if not session.exec(select(Categoria)).first():
+            for nome, cor in PADRAO:
+                session.add(Categoria(nome=nome, cor=cor))
+            session.commit()
+
+
+@app.get("/")
+def health():
+    return {"status": "ok"}
