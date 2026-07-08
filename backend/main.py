@@ -3,8 +3,15 @@ from sqlmodel import Session, select
 from database import create_db, engine
 from models import Categoria
 from routers import categorias, transacoes, resumo
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Finanças API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.include_router(categorias.router)
 app.include_router(transacoes.router)
 app.include_router(resumo.router)
