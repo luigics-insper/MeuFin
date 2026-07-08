@@ -2,11 +2,12 @@ from fastapi import FastAPI
 from sqlmodel import Session, select
 from database import create_db, engine
 from models import Categoria
-from routers import categorias, transacoes
+from routers import categorias, transacoes, resumo
 
 app = FastAPI(title="Finanças API")
 app.include_router(categorias.router)
 app.include_router(transacoes.router)
+app.include_router(resumo.router)
 
 PADRAO = [
     ("Alimentação", "#ef4444"),
