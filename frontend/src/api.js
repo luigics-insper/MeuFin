@@ -23,3 +23,13 @@ export async function criarTransacao(dados) {
 export async function deletarTransacao(id) {
   await fetch(`${API}/transacoes/${id}`, { method: 'DELETE' })
 }
+
+export async function getResumoCategorias(mes) {
+  const r = await fetch(`${API}/resumo/categorias?mes=${mes}`)
+  return r.json()
+}
+
+export async function getResumoMensal(mes) {
+  const r = await fetch(`${API}/resumo/mensal?mes=${mes}`)
+  return r.json()
+}

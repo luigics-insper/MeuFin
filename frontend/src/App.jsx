@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
-import { getCategorias, getTransacoes, deletarTransacao } from './api'
+import { getCategorias, getTransacoes, deletarTransacao, getResumoCategorias, getResumoMensal } from './api'
 import ListaTransacoes from './components/ListaTransacoes'
 import FormTransacao from './components/FormTransacao'
+import Dashboard from './components/Dashboard'
 
 function mesAtual() {
   return new Date().toISOString().slice(0, 7) // "2026-07"
@@ -12,6 +13,8 @@ export default function App() {
   const [categorias, setCategorias] = useState([])
   const [transacoes, setTransacoes] = useState([])
   const [formAberto, setFormAberto] = useState(false)
+  const [resumoMensal, setResumoMensal] = useState(null)
+  const [resumoCategorias, setResumoCategorias] = useState([])
 
   useEffect(() => {
     getCategorias().then(setCategorias)
@@ -19,6 +22,8 @@ export default function App() {
 
   const carregar = useCallback(() => {
     getTransacoes(mes).then(setTransacoes)
+    getResumoMensal(mes).then(setResumoMensal)
+    getResumoCategorias(mes).then(setResumoCategorias)
   }, [mes])
 
   useEffect(() => {
@@ -42,6 +47,7 @@ export default function App() {
             className="bg-gray-900 rounded-lg px-3 py-1.5 text-sm"
           />
         </header>
+        <Dashboard resumoMensal={resumoMensal} resumoCategorias={resumoCategorias} />
         <ListaTransacoes
           transacoes={transacoes}
           categorias={categorias}
