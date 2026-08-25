@@ -48,5 +48,3 @@ Regra de ouro: **cada item termina com algo usável.** Nada de meia-feature.
 ## Próximos (fora do roadmap original)
 - [x] Transferência entre contas (to_account_id; saldo debita origem/credita destino; painel com De→Para)
 - [x] Autenticação: senha única (bcrypt) + sessão em cookie HttpOnly/SameSite, rate limit no login, troca de senha invalida sessões, middleware allowlist
-- [ ] Deploy: Tailscale (rede privada) ou host (Fly.io/Railway)
-- [ ] Notas de estudo pro vault (Obsidian, com active recall)

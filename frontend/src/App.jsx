@@ -14,11 +14,6 @@ import Simulations from './pages/Simulations'
 import Reports from './pages/Reports'
 import More from './pages/More'
 import Login from './pages/Login'
-import Placeholder from './pages/Placeholder'
-
-const PLACEHOLDERS = [
-  ['/configuracoes', 'Configurações'],
-]
 
 export default function App() {
   return (
@@ -40,9 +35,6 @@ export default function App() {
           <Route path="/contas" element={<Accounts />} />
           <Route path="/cartoes" element={<Cards />} />
           <Route path="/mais" element={<More />} />
-          {PLACEHOLDERS.map(([path, title]) => (
-            <Route key={path} path={path} element={<Placeholder title={title} />} />
-          ))}
         </Route>
       </Routes>
     </BrowserRouter>

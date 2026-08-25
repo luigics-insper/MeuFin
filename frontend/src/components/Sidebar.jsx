@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ArrowLeftRight, FolderOpen, Landmark, CreditCard,
-  Target, Flag, Calendar, BarChart3, Lightbulb, Calculator, Settings,
+  Target, Flag, Calendar, BarChart3, Lightbulb, Calculator,
   TrendingUp, LogOut,
 } from 'lucide-react'
 import { api } from '../api/client'
@@ -24,7 +24,6 @@ const NAV = [
   { to: '/relatorios', label: 'Relatórios', icon: BarChart3 },
   { to: '/insights', label: 'Insights', icon: Lightbulb },
   { to: '/simulacoes', label: 'Simulações', icon: Calculator },
-  { to: '/configuracoes', label: 'Configurações', icon: Settings },
 ]
 
 export default function Sidebar({ netWorth }) {

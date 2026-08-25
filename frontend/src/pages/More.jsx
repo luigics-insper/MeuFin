@@ -3,7 +3,7 @@
 import { Link } from 'react-router-dom'
 import {
   FolderOpen, Landmark, CreditCard, Target, Flag, Calendar,
-  Lightbulb, Calculator, Settings, ChevronRight, LogOut,
+  Lightbulb, Calculator, ChevronRight, LogOut,
 } from 'lucide-react'
 import { api } from '../api/client'
 import { PageTitle, Card } from '../components/shared'
@@ -22,7 +22,6 @@ const SECTIONS = [
   { to: '/calendario', label: 'Calendário', icon: Calendar },
   { to: '/insights', label: 'Insights', icon: Lightbulb },
   { to: '/simulacoes', label: 'Simulações', icon: Calculator },
-  { to: '/configuracoes', label: 'Configurações', icon: Settings },
 ]
 
 export default function More() {
