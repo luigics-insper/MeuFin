@@ -1,12 +1,18 @@
 # Python
-venv/
 __pycache__/
+*.pyc
+.venv/
+venv/
 *.db
 
-# Node (pro frontend depois)
+# Node
 node_modules/
 dist/
 
-# Editor/OS
+# IDE / OS
 .vscode/
 .DS_Store
+
+# Contexto de dev com IA (logs de sessão, infra, notas internas)
+CLAUDE.md
+_claude/
